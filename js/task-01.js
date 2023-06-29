@@ -1,22 +1,15 @@
-const refs = {
-  categories: document.querySelector('#categories'),
-  categoriesList: categories.querySelectorAll('.item'),
-};
+console.log(
+  'Number of categories:',
+  document.body.children.categories.childElementCount,
+);
 
-displayNumberOfCategories(refs);
+const list = document.body.children.categories.childNodes;
+list.forEach(item => {
+  if (item.nodeName !== 'LI') {
+    return;
+  }
 
-function displayNumberOfCategories({ categories }) {
-  console.log('Number of categories:', categories.childElementCount);
-}
+  console.log('Category:', item.firstElementChild.textContent);
 
-displayTitleAndNumberOfItems(refs);
-
-function displayTitleAndNumberOfItems({ categoriesList }) {
-  categoriesList.forEach(item => {
-    const titleEL = item.querySelector('h2').textContent;
-    console.log('Category:', titleEL);
-
-    const numberOfChildEl = item.querySelector('ul').childElementCount;
-    console.log('Elements:', numberOfChildEl);
-  });
-}
+  console.log('Elements:', item.lastElementChild.childElementCount);
+});
